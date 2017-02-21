@@ -1,18 +1,40 @@
 defmodule Cards do
-  @moduledoc """
-  Documentation for Cards.
-  """
 
-  @doc """
-  Hello world.
+    def create_deck do 
 
-  ## Examples
+        values = ["Ace", "Two", "Three", "Four", "Five"]
+        suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
 
-      iex> Cards.hello
-      :world
+        for suit <- suits, value <- values do 
+            "#{value} of #{suit}"
+        end
 
-  """
-  def hello do
-    :world
-  end
+    end
+
+    def suffle(deck) do 
+        
+        Enum.shuffle(deck)
+
+    end
+
+    def contains?(deck, hand) do 
+
+        Enum.member?(deck, hand)
+
+    end
+
+    def deal(deck, hand_size) do 
+
+        Enum.split(deck, hand_size) 
+
+    end
+
+    def save(deck, filename) do 
+        
+        binary = :erlang.term_to_binary(deck)
+
+        File.write(filename, binary)
+
+    end
+
 end
