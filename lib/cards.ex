@@ -30,7 +30,7 @@ defmodule Cards do
     @doc """
     Shuffles a deck of cards 
     """
-    def suffle(deck) do 
+    def shuffle(deck) do 
         
         Enum.shuffle(deck)
 
@@ -59,7 +59,7 @@ defmodule Cards do
     ## Examples
 
         iex> deck = Cards.create_deck
-        iex> {hand, deck} = Cards.deal(deck, 1)
+        iex> {hand, _deck} = Cards.deal(deck, 1)
         iex> hand
         ["Ace of Spades"]
 
@@ -77,7 +77,7 @@ defmodule Cards do
         File.write(filename, binary)
 
     end
-    
+
     def load(filename) do 
         
         case File.read(filename) do 
@@ -90,7 +90,7 @@ defmodule Cards do
     def create_hand(hand_size) do
 
         Cards.create_deck 
-        |> Cards.suffle
+        |> Cards.shuffle
         |> Cards.deal(hand_size)
 
     end
