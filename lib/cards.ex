@@ -1,6 +1,20 @@
 defmodule Cards do
     @moduledoc """
-        Provides methods for creating and handling a deck of cards.
+    Provides methods for creating and handling a deck of cards.
+    """
+
+    @doc """
+    Returns a list of strings representing a deck of playing cards. 
+
+    ## Examples
+
+        iex> Cards.create_deck
+        ["Ace of Spades", "Two of Spades", "Three of Spades", "Four of Spades",
+        "Five of Spades", "Ace of Clubs", "Two of Clubs", "Three of Clubs",
+        "Four of Clubs", "Five of Clubs", "Ace of Hearts", "Two of Hearts",
+        "Three of Hearts", "Four of Hearts", "Five of Hearts", "Ace of Diamonds",
+        "Two of Diamonds", "Three of Diamonds", "Four of Diamonds", "Five of Diamonds"]
+
     """
     def create_deck do 
 
@@ -13,18 +27,43 @@ defmodule Cards do
 
     end
 
+    @doc """
+    Shuffles a deck of cards 
+    """
     def suffle(deck) do 
         
         Enum.shuffle(deck)
 
     end
 
+    @doc """
+    Determines if a hand is part of the deck of cards
+
+    ## Examples
+        
+        iex> deck = Cards.create_deck
+        iex> Cards.contains?(deck, "Ace of Spades")
+        true
+    """
     def contains?(deck, hand) do 
 
         Enum.member?(deck, hand)
 
     end
 
+    @doc """
+        
+    Divides a deck into a hand and the remainder of the deck. 
+    The `hand_size` argument indicates how many cards should be in the hand
+
+    ## Examples
+
+        iex> deck = Cards.create_deck
+        iex> {hand, deck} = Cards.deal(deck, 1)
+        iex> hand
+        ["Ace of Spades"]
+
+    """
     def deal(deck, hand_size) do 
 
         Enum.split(deck, hand_size) 
@@ -38,7 +77,7 @@ defmodule Cards do
         File.write(filename, binary)
 
     end
-
+    
     def load(filename) do 
         
         case File.read(filename) do 
